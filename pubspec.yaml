@@ -93,3 +93,9 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/img/icons01.jpg"
+
+flutter_font:
+  fonts:
+    -family: kanit
+    -fonts:
+      - asset: "assets/fonts/Kanit-Regular.ttf"
