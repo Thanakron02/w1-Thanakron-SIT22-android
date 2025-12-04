@@ -306,6 +306,7 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+
 // สร้าง class page 2
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -400,23 +401,23 @@ class SecondPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Row(
                 children: [
-                  // ปุ่มติดตาม (ใช้ Expanded ให้ยาวเต็มพื้นที่)
+                  // ปุ่มติดตาม
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF0072CF), // สีฟ้าตามธีมเดิม
+                        backgroundColor: Color(0xFF0072CF), // สีฟ้าปุ่ม
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(vertical: 12), // ความสูงปุ่ม
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // มุมโค้งนิดหน่อย
+                          borderRadius: BorderRadius.circular(8), // มุมโค้ง
                         ),
                       ),
                       child: Text("ติดตาม", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     ),
                   ),
                   SizedBox(width: 10),
-                  // ปุ่ม Share (ไอคอนสี่เหลี่ยม)
+                  // ปุ่ม Share
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
@@ -433,9 +434,9 @@ class SecondPage extends StatelessWidget {
             GridView.builder(
               shrinkWrap: true, // สำคัญมาก! บอกให้ Grid ใช้พื้นที่เท่าที่มี (ไม่เช่นนั้นจะ Error)
               physics: NeverScrollableScrollPhysics(), // ปิดการเลื่อนของ Grid (ให้ใช้ Scroll หลักแทน)
-              itemCount: 6, // จำนวนรูป (สมมติ 6 รูป)
+              itemCount: 9, // จำนวนรูป (สมมติ 6 รูป)
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // แบ่งเป็น 2 คอลัมน์
+                crossAxisCount: 3, // แบ่งเป็น 2 คอลัมน์
                 crossAxisSpacing: 2, // ระยะห่างแนวตั้ง
                 mainAxisSpacing: 2, // ระยะห่างแนวนอน
                 childAspectRatio: 0.8, // สัดส่วนรูป (กว้าง/สูง) 0.8 คือแนวตั้งนิดๆ
@@ -444,7 +445,7 @@ class SecondPage extends StatelessWidget {
                 // รายการรูปภาพ
                 return Image.network(
                   // ใช้รูปแมวสลับกันเล่นๆ
-                  index % 2 == 0
+                  index % 9 == 0
                       ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7-1F84dGqgA3_4yVv0y2Hh5h8f9p9q1-1wQ&s"
                       : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_pX8gA9l_J_K5w_L8z8x8n-1_0_0_0_0&s",
                   fit: BoxFit.cover, // เอารูปเต็มช่อง
