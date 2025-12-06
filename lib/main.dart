@@ -58,7 +58,7 @@ class MyHomePage extends StatelessWidget {
 
                   //กรอบรูป
                   Container(
-                    padding: EdgeInsets.all(4), // ขอบสีขาวรอบรูป
+                    padding: EdgeInsets.all(2), // ขอบสีขาวรอบรูป
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle, // รูปทรงวงกลม
@@ -73,22 +73,25 @@ class MyHomePage extends StatelessWidget {
                     child: ClipOval(
                       child: Image.network(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR7W7abnD_PTJXYUShd8668XnE6HixbkhEqQ&s",
-                        width: 120,
-                        height: 120,
+                        width: 180,
+                        height: 180,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   SizedBox(height: 15),
 
+                  //ชื่อ
                   Text(
                     "Thanakron Punya",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 30,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
                   ),
+
+                  //เมล
                   Text(
                     "thanakron.punya@e-tech.ac.th",
                     style: TextStyle(
@@ -321,7 +324,6 @@ class SecondPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black), // เปลี่ยนสีไอคอนทั้งหมดในบาร์
       ),
       // ใช้ ListView แทน Column เพื่อให้เลื่อนได้และเขียนสั้นลง
-
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -329,14 +331,14 @@ class SecondPage extends StatelessWidget {
           Row(
             children: [
               const CircleAvatar(
-                radius: 40,
+                radius: 50,
                 backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR7W7abnD_PTJXYUShd8668XnE6HixbkhEqQ&s"),
               ),
               const SizedBox(width: 20),
-              // สถิติ (ใช้ Expanded จัดระยะห่างอัตโนมัติ)
+              // ยอดฟอล
               Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround, //แถวกำลังตต.
                   children: const [
                     Text("10\nกำลังติดตาม", textAlign: TextAlign.center),
                     Text("10.0M \nผู้ติดตาม", textAlign: TextAlign.center),
@@ -360,12 +362,11 @@ class SecondPage extends StatelessWidget {
             children: [
               Expanded(
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                  onPressed: () {},
-                  child: const Text("ติดตาม", style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue), //สีปุ่ม
+                  onPressed: () {}, //เมื่อกดแล้สจะให้ไปไหน
+                  child: const Text("ติดตาม", style: TextStyle(color: Colors.white)), //คำในปุ่ม
                 ),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
             ],
           ),
 
