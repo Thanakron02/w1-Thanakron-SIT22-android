@@ -306,7 +306,6 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-
 // สร้าง class page 2
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -314,171 +313,112 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // พื้นหลังขาวสะอาด
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        title: const Text("Xinnn_", style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
-        elevation: 0, // ลบเงาใต้ Appbar ให้ดูเรียบ
-        title: Text(
-          "Xinnn_", // ชื่อด้านบน (เหมือนในรูป)
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: false, // จัดชื่อชิดซ้าย
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black), // เปลี่ยนสีไอคอนทั้งหมดในบาร์
+      ),
+      // ใช้ ListView แทน Column เพื่อให้เลื่อนได้และเขียนสั้นลง
+
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          // --- ส่วนที่ 1: รูปโปรไฟล์ + สถิติ ---
+          Row(
+            children: [
+              const CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR7W7abnD_PTJXYUShd8668XnE6HixbkhEqQ&s"),
+              ),
+              const SizedBox(width: 20),
+              // สถิติ (ใช้ Expanded จัดระยะห่างอัตโนมัติ)
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Text("10\nกำลังติดตาม", textAlign: TextAlign.center),
+                    Text("10.0M \nผู้ติดตาม", textAlign: TextAlign.center),
+                    Text("0\nถูกใจ", textAlign: TextAlign.center),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 15),
+
+          // --- ส่วนที่ 2: ชื่อ ---
+          const Text("Younggu", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Text("เมียมึงรู้พิกัด", style: TextStyle(color: Colors.grey)),
+
+          const SizedBox(height: 20),
+
+          // --- ส่วนที่ 3: ปุ่มฟอล---
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  onPressed: () {},
+                  child: const Text("ติดตาม", style: TextStyle(color: Colors.white)),
+                ),
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          // --- ส่วนที่ 4: ตารางรูปภาพ ---
+          GridView.count(
+            shrinkWrap: true, // ให้ Grid ใช้พื้นที่เท่าที่มี
+            crossAxisCount: 2, // แบ่งคอลัมน์
+            mainAxisSpacing: 2, // ระยะห่างแนวนอน
+            crossAxisSpacing: 2, // ระยะห่างแนวตั้ง
+
+            children: [
+              // รูปที่ 1
+              Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPu9xNiVrNQAXMw10S2DIIiZCMwlPTfWHYfQ&s",
+                fit: BoxFit.cover,
+              ),
+
+              // รูปที่ 2
+              Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_2PjyaeNWohX1S83Oh-DRbwkb0Hj-j2wU_w&s",
+                fit: BoxFit.cover,
+              ),
+
+              // รูปที่ 3
+              Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbCVfiQs3MHNNEiAf8S8gia2qNmqGOWjnKew&s",
+                fit: BoxFit.cover,
+              ),
+
+              // รูปที่ 4
+              Image.network(
+                "https://today-obs.line-scdn.net/0hlozeIv8vM0BHHC2vLvxMF39KPzF0eilJZXkuIWJPb3Y4MHxBLilgI2MbPmw6KnNEZ3N7L2YZPiBrJHVDeA/w280",
+                fit: BoxFit.cover,
+              ),
+
+              // รูปที่ 5
+              Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdk2CHlEOlq4MY3raKp8W2gcfoa3dKdjwDNQ&s",
+                fit: BoxFit.cover,
+              ),
+
+              // รูปที่ 6
+              Image.network(
+                "https://musicstation.kapook.com/files_music2008/picture/6/30109.jpg",
+                fit: BoxFit.cover,
+              ),
+
+            ],
           )
         ],
       ),
-      // ใช้ SingleChildScrollView เพื่อให้เลื่อนหน้าจอได้ถ้าข้อมูลเยอะ
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // --- ส่วนที่ 1: ข้อมูลส่วนตัว (รูป + สถิติ) ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Row(
-                children: [
-                  // 1. รูปโปรไฟล์วงกลม
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey.shade200, width: 2), // ขอบรูปบางๆ
-                    ),
-                    child: CircleAvatar(
-                      radius: 45, // ขนาดรูป
-                      backgroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR7W7abnD_PTJXYUShd8668XnE6HixbkhEqQ&s"),
-                    ),
-                  ),
-
-                  SizedBox(width: 20), // เว้นระยะห่างรูปกับสถิติ
-
-                  // 2. ส่วนแสดงสถิติ (Expanded เพื่อให้กินพื้นที่ที่เหลือ)
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround, // จัดระยะห่างเท่าๆ กัน
-                      children: [
-                        _buildStatColumn("5", "กำลังติดตาม"),
-                        _buildStatColumn("0", "ผู้ติดตาม"),
-                        _buildStatColumn("0", "ถูกใจ"),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // --- ส่วนที่ 2: ชื่อและเครื่องหมายติ๊กถูก ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Thanakron Punya",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(width: 5),
-                      // ไอคอนติ๊กถูกสีฟ้า
-                      Icon(Icons.verified, color: Colors.blue, size: 20),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Thanakron", // ข้อความ Bio หรือเพลง
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-
-            // --- ส่วนที่ 3: ปุ่มกด (Follow) ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Row(
-                children: [
-                  // ปุ่มติดตาม
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF0072CF), // สีฟ้าปุ่ม
-                        foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(vertical: 12), // ความสูงปุ่ม
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8), // มุมโค้ง
-                        ),
-                      ),
-                      child: Text("ติดตาม", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  // ปุ่ม Share
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade300),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(Icons.share, size: 24, color: Colors.black),
-                  ),
-                ],
-              ),
-            ),
-
-            // --- ส่วนที่ 4: Grid รูปภาพ (2 รูปเรียงกัน) ---
-            GridView.builder(
-              shrinkWrap: true, // สำคัญมาก! บอกให้ Grid ใช้พื้นที่เท่าที่มี (ไม่เช่นนั้นจะ Error)
-              physics: NeverScrollableScrollPhysics(), // ปิดการเลื่อนของ Grid (ให้ใช้ Scroll หลักแทน)
-              itemCount: 9, // จำนวนรูป (สมมติ 6 รูป)
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // แบ่งเป็น 2 คอลัมน์
-                crossAxisSpacing: 2, // ระยะห่างแนวตั้ง
-                mainAxisSpacing: 2, // ระยะห่างแนวนอน
-                childAspectRatio: 0.8, // สัดส่วนรูป (กว้าง/สูง) 0.8 คือแนวตั้งนิดๆ
-              ),
-              itemBuilder: (context, index) {
-                // รายการรูปภาพ
-                return Image.network(
-                  // ใช้รูปแมวสลับกันเล่นๆ
-                  index % 9 == 0
-                      ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7-1F84dGqgA3_4yVv0y2Hh5h8f9p9q1-1wQ&s"
-                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_pX8gA9l_J_K5w_L8z8x8n-1_0_0_0_0&s",
-                  fit: BoxFit.cover, // เอารูปเต็มช่อง
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // ฟังก์ชันย่อยสำหรับสร้างช่องตัวเลขสถิติ (จะได้ไม่ต้องเขียนซ้ำ 3 รอบ)
-  Widget _buildStatColumn(String number, String label) {
-    return Column(
-      children: [
-        Text(
-          number,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey,
-          ),
-        ),
-      ],
     );
   }
 }
